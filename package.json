@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "nodemon server",
+    "serve": "node server",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "daisyui": "^2.19.1",
     "express": "^4.18.1",
     "next": "12.2.3",
     "react": "18.2.0",

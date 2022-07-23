@@ -1,24 +1,28 @@
 module.exports = class store {
 
     constructor() {
-        this.todoList = []
+        this.todoList = [{id: 20, todo: "learn React.js", status: "New"}]
+    }
+
+    get(id) {
+        const  entity = this.todoList.find(item => item.id  === parseInt(id));
+        return  entity;
     }
 
     add(entity) {
-        const newRec = { id: this.todoList.length + 1, todo: entity.todo };
-        this.todoList.push(newRec);
-
-        return newRec;
+        const record = { ...entity, id: this.todoList.length + 1 };
+        this.todoList.push(record);
+        return record;
     }
     update(id, entity) {
         const indexById = this.todoList.findIndex(item => item.id === parseInt(id));
-        this.todoList[indexById].todo = entity.todo;
-        
+        this.todoList[indexById] = {...this.todoList[indexById], ...entity};
         return this.todoList[indexById];
     }
     delete(id) {
         const indexById = this.todoList.findIndex(item => item.id === parseInt(id));
-        return this.todoList.splice(indexById, 1);
+        const resp = this.todoList.splice(indexById, 1);
+        return resp;
     }
 
 };

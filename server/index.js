@@ -19,6 +19,11 @@ app.prepare()
             return res.send({ todo: store.todoList})
         })
 
+        server.get('/api/todo/:id', (req, res) => {
+            const id = req.params.id;
+            return res.send(store.get(id))
+        })
+
         server.post('/api/todo/new', (req, res) => {
             const entity = req.body;
             return res.send(store.add(entity));
@@ -45,6 +50,5 @@ app.prepare()
         })
     })
     .catch((ex) => {
-        console.error(ex.stack)
         process.exit(1)
     })
